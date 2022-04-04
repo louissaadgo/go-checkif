@@ -14,6 +14,7 @@ type StringObject struct {
 	Errors []error
 }
 
+//IsShorterThan checks if the lenght of the string is shorter than n.
 func (o *StringObject) IsShorterThan(n int) *StringObject {
 	if len(o.Data) < n {
 		return o
@@ -23,6 +24,7 @@ func (o *StringObject) IsShorterThan(n int) *StringObject {
 	return o
 }
 
+//IsLongerThan checks if the lenght of the string is longer than n.
 func (o *StringObject) IsLongerThan(n int) *StringObject {
 	if len(o.Data) > n {
 		return o
