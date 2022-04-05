@@ -8,12 +8,12 @@ import (
 
 func main() {
 
-	phrase := "kfDk"
+	phrase := "swwaecd"
 
 	phraseChecker := checkif.StringObject{
 		Data: phrase,
 	}
-	phraseChecker.DoesNotContainUpperCaseLetter()
+	phraseChecker.DoesNotContainCustomString("wwa")
 
 	fmt.Println(phraseChecker)
 }

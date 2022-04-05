@@ -3,6 +3,7 @@ package checkif
 import (
 	"fmt"
 	"regexp"
+	"strings"
 )
 
 //StringObject is used by checkif to validate data of type string
@@ -105,6 +106,48 @@ func (o *StringObject) DoesNotContainUpperCaseLetter() *StringObject {
 	if err == nil && matched {
 		o.IsInvalid = true
 		o.Errors = append(o.Errors, fmt.Errorf("data contains an upper case letter"))
+	}
+	return o
+}
+
+//ContainsWhiteSpace checks if the string contains a white space.
+func (o *StringObject) ContainsWhiteSpace() *StringObject {
+	matched := strings.Contains(o.Data, " ")
+	if matched {
+		return o
+	}
+	o.IsInvalid = true
+	o.Errors = append(o.Errors, fmt.Errorf("data does not contain a white space"))
+	return o
+}
+
+//DoesNotContainWhiteSpace checks if the string does not contain a white space.
+func (o *StringObject) DoesNotContainWhiteSpace() *StringObject {
+	matched := strings.Contains(o.Data, " ")
+	if matched {
+		o.IsInvalid = true
+		o.Errors = append(o.Errors, fmt.Errorf("data contains a white space"))
+	}
+	return o
+}
+
+//ContainsCustomString checks if the string contains s.
+func (o *StringObject) ContainsCustomString(s string) *StringObject {
+	matched := strings.Contains(o.Data, s)
+	if matched {
+		return o
+	}
+	o.IsInvalid = true
+	o.Errors = append(o.Errors, fmt.Errorf("data does not contain %v", s))
+	return o
+}
+
+//DoesNotContainCustomString checks if the string does not contain s.
+func (o *StringObject) DoesNotContainCustomString(s string) *StringObject {
+	matched := strings.Contains(o.Data, s)
+	if matched {
+		o.IsInvalid = true
+		o.Errors = append(o.Errors, fmt.Errorf("data contains %v", s))
 	}
 	return o
 }
