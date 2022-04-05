@@ -8,12 +8,12 @@ import (
 
 func main() {
 
-	phrase := "checkif is so powerful!"
+	phrase := "kfDk"
 
 	phraseChecker := checkif.StringObject{
 		Data: phrase,
 	}
-	phraseChecker.IsShorterThan(20).IsLongerThan(3)
+	phraseChecker.DoesNotContainUpperCaseLetter()
 
 	fmt.Println(phraseChecker)
 }
